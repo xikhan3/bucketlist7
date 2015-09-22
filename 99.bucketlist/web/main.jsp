@@ -77,7 +77,7 @@
                     			<a href="go.bk?next=join">join</a>
                     		</c:when>
                     		<c:otherwise>
-                    			<a href="go.bk?next=mypage">mypage</a>
+                    			<a href="mypage.bk">mypage</a>
                     		</c:otherwise>
                     	</c:choose>
                     </li>

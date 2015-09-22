@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -89,6 +91,20 @@ public class UsersController {
 		}
 		return "redirect:/userslist.bk"; 
 	}
+	
+	@RequestMapping("/mypage.bk")
+	public ModelAndView mypage(HttpServletRequest request, Object obj) {
+		ModelAndView mv = new ModelAndView("main");
+		
+		HttpSession session = request.getSession();
+		Users user = (Users) session.getAttribute("loginuser");
+	
+		mv.addObject("user", user);
+	
+		mv.addObject("center","mypage");
+		return mv;
+	}
+	
 	
 	
 }
