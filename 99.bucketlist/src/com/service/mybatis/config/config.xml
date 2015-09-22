@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+ 	<typeAliases>
+ 		<typeAlias type="com.service.vo.Users" alias="users"/>
+ 		<typeAlias type="com.service.vo.Contents" alias="contents"/>
+ 		<typeAlias type="com.service.vo.Comments" alias="comments"/>
+<!--  		<typeAlias type="com.service.vo.Users_Category" alias="users_category"/>
+ 		<typeAlias type="com.service.vo.Board" alias="board"/>
+ 		<typeAlias type="com.service.vo.Category" alias="category"/>
+ 		
+ 		<typeAlias type="com.service.vo.Favorite" alias="favorite"/>
+ 		<typeAlias type="com.service.vo.Follow" alias="follow"/>
+ 		 -->
+ 	</typeAliases>
+ 	
+ 	<mappers>
+ 		<mapper resource="com/service/mybatis/mapper/users.xml"/>
+ 		<mapper resource="com/service/mybatis/mapper/contents.xml"/>
+ 		<mapper resource="com/service/mybatis/mapper/comments.xml"/>
+<!--  	<mapper resource="com/service/mybatis/mapper/users_category.xml"/>
+ 		<mapper resource="com/service/mybatis/mapper/board.xml"/>
+ 		<mapper resource="com/service/mybatis/mapper/category.xml"/>
+ 		
+ 		<mapper resource="com/service/mybatis/mapper/favorite.xml"/>
+ 		<mapper resource="com/service/mybatis/mapper/follow.xml"/>
+ 		 -->
+ 	</mappers>
+</configuration>
+
+

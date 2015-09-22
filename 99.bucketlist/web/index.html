@@ -1,0 +1,15 @@
+<script>
+var sp = ['mobile','iphone','ipad','window ce','android'];
+
+for(var i in sp){
+	if(navigator.userAgent.toLowerCase().match(
+			new RegExp(sp[i])
+	)){
+		location.href='m/main.bk';
+		break;
+	}else{
+		location.href='main.bk';
+		break;
+	}
+}
+</script>
