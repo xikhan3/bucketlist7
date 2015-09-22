@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style>
 	#img01{
-		width:100px;
-		height:100px;
+		width:400px;
+		height:300px;
 	}
 </style>
 <head>
@@ -39,25 +38,48 @@
 <title>Contents List</title>
 </head>
 <body>
-	<h1>Contents List</h1>
-	<c:forEach items="${contentslist }" var="contents">
-		<c:choose>
-			<c:when test="${contents!=null }">
-				<table>
-				<tr>
-					<td rowspan="3"><a href="contentsdetail.bk?id=${contents.contents_id}"><img id="img01" src="img/comments/${contents.contents_image2}"></a></td>
-					<td class="navbar-brand"><a href="contentsdetail.bk?id=${contents.contents_id}">제목 : ${contents.contents_title }</a></td>
-				</tr>
-				<tr>
-					<td class="navbar-brand">내용 : ${contents.contents_content}</td> 
-				</tr>
-				<tr>
-					<td class="navbar-brand"><a href="contentsdelete.bk?user_id=${contents.user_id}">삭제하기</a></td> 
-				</tr>
-				</table>
-			</c:when>
-		</c:choose>
-	</c:forEach>
-	
+   <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Contents List</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+            	<c:forEach items="${contentslist }" var="contents">
+            		<c:choose>
+            			<c:when test="${contents!=null }">
+            				<div class="col-sm-4 portfolio-item">
+			                    <a href="contentsdetail.bk?id=${contents.contents_id}" class="portfolio-link">
+			                        <div class="caption">
+			                            <div class="caption-content">
+			                                <i class="fa fa-search-plus fa-3x"></i>
+			                            </div>
+			                        </div>
+			                        <img id="img01" src="img/contents/${contents.contents_image1}" class="img-responsive">
+			                   		<div id="layer1" style="position:absolute; left:20px; top:20px; width:200px; height:100px; z-index:1; border-width:1px; border-style:none;"><p>TITLE : ${contents.contents_title }</p></div>
+			                    </a>
+			                </div>
+            			</c:when>
+            			<c:otherwise>
+            			</c:otherwise>
+            		</c:choose>
+            	</c:forEach>
+            
+            
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
 </body>
 </html>
