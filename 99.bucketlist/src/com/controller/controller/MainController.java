@@ -1,11 +1,19 @@
 package com.controller.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.controller.command.UsersCommand;
@@ -84,6 +92,29 @@ public class MainController {
 			session.invalidate();
 		}
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getforecast.do")
+	public void getforecast(HttpServletResponse rs) throws UnsupportedEncodingException, IOException{
+		String urlstr = "http://weather.yahooapis.com/forecastrss?p=KSXX0034&u=c";
+		URL url = new URL(urlstr);
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+				url.openStream(),"UTF-8"		
+		));
+		
+		StringBuffer sb = new StringBuffer();
+		String temp = null;
+		
+		while(true){
+			temp = br.readLine();
+			if(temp == null) break;
+			sb.append(temp);
+		}
+		br.close();
+		rs.setCharacterEncoding("EUC-KR");
+		rs.setContentType("text/xml");
+		rs.getWriter().write(sb.toString());
 	}
 	
 }

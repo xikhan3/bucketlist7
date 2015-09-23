@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,6 +11,7 @@
 
 
 <h3>${contentsupdate.category_id}</h3>
+<input type="hidden" name="contents_id" value="${contentsupdate.contents_id }">
 <input type="hidden" name="user_id" value="${contentsupdate.user_id}">
 <h3>카테고리 : </h3>
 <div class="form-group">

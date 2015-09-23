@@ -40,7 +40,7 @@ public class ContentsController {
 	      MultipartFile file2 = uc.getContents_image2();
 	      MultipartFile file3 = uc.getContents_image3();
 	      
-	      String dir = "C:\\workspace\\99.bucketlist\\web\\img\\contents\\";
+	      String dir = "C:\\workspace\\bucketlist7\\99.bucketlist\\web\\img\\comments\\";
 	      MyUtil.saveFile(file1, dir);
 	      MyUtil.saveFile(file2, dir);
 	      MyUtil.saveFile(file3, dir);
@@ -75,14 +75,12 @@ public class ContentsController {
 			ArrayList<Object> list2 = new ArrayList<Object>();
 			try {
 				list = biz2.get();
-				System.out.println("list:"+list);
 				
 				for(int i=0; i<list.size(); i++){
 					Comments comment = (Comments)list.get(i);
 					if(comment.getContents_id()==id){
 						list2.add(comment);
-						System.out.println(list2);
-						mv.addObject("commentslist",list);
+						mv.addObject("commentslist",list2);
 					}
 				
 				}
@@ -167,7 +165,7 @@ public class ContentsController {
 					); 
 			
 		}else{
-			String dir = "C:\\workspace\\99.bucketlist\\web\\img\\contents\\";
+			String dir = "C:\\workspace\\bucketlist7\\99.bucketlist\\web\\img\\comments\\";
 			MyUtil.saveFile(file1, dir);
 			MyUtil.saveFile(file2, dir);
 			MyUtil.saveFile(file3, dir);

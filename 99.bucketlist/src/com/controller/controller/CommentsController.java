@@ -32,25 +32,27 @@ public class CommentsController {
 	@Resource(name="commentsbiz")
 	Biz biz;
 	
+	
 	   @RequestMapping("/commentsregister.bk")
-	   public ModelAndView register(CommentsCommand uc) throws Exception{
-		
-	      ModelAndView mv = new ModelAndView("main");
-	      Comments c = new Comments(uc.getComments_id(), uc.getContents_id(), uc.getUser_id(), uc.getComments_content(), uc.getComments_regdate(), uc.getComments_image().getOriginalFilename());
-	      System.out.println(c);
-	      try {
-	         biz.register(c);
-	         System.out.println("성공");
-	      } catch (Exception e) {
-	         System.out.println("실패");
-	         e.printStackTrace();
-	      }
-	      MultipartFile file = uc.getComments_image();
+	      public String register(CommentsCommand uc) throws Exception{
+	         //ModelAndView mv = new ModelAndView("main");
+	         Comments c = new Comments(uc.getComments_id(), uc.getContents_id(), uc.getUser_id(), uc.getComments_content(), uc.getComments_regdate(), uc.getComments_image());
+	         System.out.println(c);
+	         try {
+	            biz.register(c);
+	            System.out.println("성공");
+	         } catch (Exception e) {
+	            System.out.println("실패");
+	            e.printStackTrace();
+	         }
+	         
+	         /*MultipartFile file = uc.getComments_image();
+	         
+	         String dir = "C:\\workspace\\bucketlist7\\99.bucketlist\\web\\img\\comments\\";
+	         MyUtil.saveFile(file, dir);*/
 	      
-	      String dir = "C:\\workspace\\99.bucketlist\\web\\img\\comments\\";
-	      MyUtil.saveFile(file, dir);
-	      return mv;
-	   }
+	         return "redirect:/contentsdetail.bk?id="+c.getContents_id();
+	      }
 	
 	@RequestMapping("/commentslist.bk")
 	public ModelAndView list(Object obj){
@@ -68,71 +70,7 @@ public class CommentsController {
 		mv.addObject("center","commentslist");
 		return mv;
 	}
-	/*
-	@RequestMapping("/contentsupdate.bk")
-	public ModelAndView update(int id) throws Exception{
-		ModelAndView mv = new ModelAndView("main");
 		
-		mv.addObject("contentsupdate", biz.get(id));
-		mv.addObject("center","contentsupdate");
-		return mv;
-	}
-	
-	@RequestMapping("/contentsupdateimpl.bk")
-	public String updateimpl(UpdateContentsCommand ucc) throws Exception{
-		
-		Contents contents = null;
-		MultipartFile file1 = ucc.getNew_contents_image1();
-		MultipartFile file2 = ucc.getNew_contents_image2();
-		MultipartFile file3 = ucc.getNew_contents_image3();
-		
-		
-		if(file1 == null || file1.getOriginalFilename().equals("")){
-			contents = new Contents(
-					ucc.getContents_id(), 
-					ucc.getUser_id(), 
-					ucc.getCategory_id(), 
-					ucc.getContents_title(),
-					ucc.getContents_image1(), 
-					ucc.getContents_image2(), 
-					ucc.getContents_image3(),
-					ucc.getContents_content(), ucc.getContents_goaldate(), 
-					ucc.getContents_loc(), 
-					ucc.getLat(), ucc.getLon(), 
-					ucc.getContents_regdate(), 
-					ucc.getContents_private(),
-					ucc.getContents_com()
-					); 
-			
-		}else{
-			String dir = "C:\\workspace\\99.bucketlist\\web\\img\\contents\\";
-			MyUtil.saveFile(file1, dir);
-			MyUtil.saveFile(file2, dir);
-			MyUtil.saveFile(file3, dir);
-			
-			contents = new Contents(
-					ucc.getContents_id(), 
-					ucc.getUser_id(), 
-					ucc.getCategory_id(), 
-					ucc.getContents_title(),
-					ucc.getNew_contents_image1().getOriginalFilename(), 
-					ucc.getNew_contents_image2().getOriginalFilename(), 
-					ucc.getNew_contents_image3().getOriginalFilename(),
-					ucc.getContents_content(), ucc.getContents_goaldate(), 
-					ucc.getContents_loc(), 
-					ucc.getLat(), ucc.getLon(), 
-					ucc.getContents_regdate(), 
-					ucc.getContents_private(),
-					ucc.getContents_com()
-					);
-			
-		}
-		
-		biz.modify(contents);
-		
-		return "redirect:contentsdetail.bk?id="+ucc.getUser_id();
-	}*/
-	
 	@RequestMapping("/commentsdelete.bk")
 	public String remove(CommentsCommand uc){
 		try {

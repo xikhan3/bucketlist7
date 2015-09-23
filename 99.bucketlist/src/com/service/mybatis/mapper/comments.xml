@@ -26,16 +26,10 @@
 	<delete id="deleteComments"
 	parameterType="comments"
 	>
-	   DELETE FROM COMMENTS WHERE user_id = #{user_id}
+	   DELETE FROM COMMENTS WHERE user_id = #{user_id} 
 	</delete>
 	<update id="updatecomments"
 	parameterType="comments">
 	   UPDATE COMMENTS SET PWD=#{pwd},NAME=#{name} WHERE ID=#{id}
 	</update>
 </mapper>
-
-
-
-
-
-

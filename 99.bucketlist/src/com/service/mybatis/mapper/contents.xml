@@ -29,11 +29,12 @@
 	</insert>
 
 	<delete id="deleteContents" parameterType="contents">
-		DELETE FROM CONTENTS WHERE USER_ID = #{user_id}
+		DELETE FROM CONTENTS WHERE USER_ID = #{user_id} AND CONTENTS_ID = #{contents_id}
 	</delete>
 
 	<update id="updateContents" parameterType="contents">
 		UPDATE CONTENTS SET
+		CONTENTS_ID = #{contents_id},
 		CATEGORY_ID = #{category_id},
 		CONTENTS_TITLE = #{contents_title},
 		CONTENTS_IMAGE1 = #{contents_image1}, 
@@ -47,7 +48,7 @@
 		CONTENTS_REGDATE = sysdate,
 		CONTENTS_PRIVATE = '1',
 		CONTENTS_COM = '1'
-		WHERE USER_ID = #{user_id}
+		WHERE USER_ID = #{user_id} AND CONTENTS_ID = #{contents_id}
 	</update>
 </mapper>
 

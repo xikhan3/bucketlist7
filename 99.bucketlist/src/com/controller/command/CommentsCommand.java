@@ -10,14 +10,14 @@ public class CommentsCommand {
 		private String user_id;
 		private String comments_content;
 		private Date comments_regdate;
-		MultipartFile comments_image;
+		private String comments_image;
 		
 		public CommentsCommand() {
 			super();
 		}
 		public CommentsCommand(int comments_id, int contents_id,
 				String user_id, String comments_content, Date comments_regdate,
-				MultipartFile comments_image) {
+				String comments_image) {
 			super();
 			this.comments_id = comments_id;
 			this.contents_id = contents_id;
@@ -56,10 +56,10 @@ public class CommentsCommand {
 		public void setComments_regdate(Date comments_regdate) {
 			this.comments_regdate = comments_regdate;
 		}
-		public MultipartFile getComments_image() {
+		public String getComments_image() {
 			return comments_image;
 		}
-		public void setComments_image(MultipartFile comments_image) {
+		public void setComments_image(String comments_image) {
 			this.comments_image = comments_image;
 		}
 		@Override

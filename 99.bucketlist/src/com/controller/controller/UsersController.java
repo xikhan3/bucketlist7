@@ -33,7 +33,7 @@ public class UsersController {
 	   public ModelAndView register(UsersCommand uc) throws Exception{
 	      ModelAndView mv = new ModelAndView("main");
 	      Users u = new Users(uc.getUser_id(), uc.getUser_password(), uc.getUser_name(), uc.getUser_email(), uc.getUser_image().getOriginalFilename(), new Date(), true);
-	      
+	      System.out.println(u);
 	      try {
 	         biz.register(u);
 	         System.out.println("성공");
@@ -42,7 +42,7 @@ public class UsersController {
 	         e.printStackTrace();
 	      }
 	      MultipartFile file = uc.getUser_image();
-	      String dir = "C:\\workspace\\99.bucketlist\\web\\img\\users\\";
+	      String dir = " C:\\workspace\\bucketlist7\\99.bucketlist\\web\\img\\users\\";
 	      MyUtil.saveFile(file, dir);
 	      return mv;
 	   }

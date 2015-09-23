@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -10,7 +10,27 @@
 	}
 </style>
 <head>
-
+<script>
+function login(f){
+   var c = confirm('로그인 하시겠습니까?');
+   if(c == true){
+      f.method='post';
+      f.action='login.bk';
+      f.submit();
+      alert('로그인 성공');
+   }
+};
+function usersregister(f) {
+	   var c = confirm('?');
+	   if (c == true){
+	      f.method='post';
+	      f.action='usersregister.bk';
+	      f.submit();
+	      alert('회원가입 성공');
+	   }
+	};
+</script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,7 +84,7 @@
                     <li class="page-scroll">
                     	<c:choose>
                     		<c:when test="${loginuser == null }">
-                    			<a href="go.bk?next=login">login</a>
+                    			<a data-toggle="modal" data-target="#myModal" href="#myModal">LOGIN</a> 
                     		</c:when>
                     		<c:otherwise>
                     			<a href="logout.bk">logout</a>
@@ -74,7 +94,7 @@
                     <li class="page-scroll">
                     	<c:choose>
                     		<c:when test="${loginuser == null }">
-                    			<a href="go.bk?next=join">join</a>
+                    			<a data-toggle="modal" data-target="#myModal2" href="#myModal2">JOIN</a>
                     		</c:when>
                     		<c:otherwise>
                     			<a href="mypage.bk">mypage</a>
@@ -84,7 +104,7 @@
                     <li class="page-scroll">
                  	   <c:choose>
                     		<c:when test="${loginuser == null }">
-                    			<a href="go.bk?next=login">contents</a>
+                    			<a data-toggle="modal" data-target="#myModal" href="#myModal">CONTENTS</a>
                     		</c:when>
                     		<c:otherwise>
                     			<a href="go.bk?next=contents">contents</a>
@@ -122,12 +142,91 @@
       </c:choose>
    </section>
     
-    <!-- Footer -->
+    <!-- 로그인부분 시작 -->
+ <div class="container">
+    <form>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel">Login</h4>
+	      </div>
+	      <div class="modal-body">
+				<div class="form-group">
+			        <input type="text" class="form-control input-lg" placeholder="id" id="user_id" name="user_id">
+			    </div>
+			    <div class="form-group">
+			        <input type="password" class="form-control input-lg" placeholder="Password" id="user_password" name="user_password">
+			    </div>
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="login(this.form)">Login</button>
+		<button type="button" class="btn btn-default" onclick="self.close()">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	</form>
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script><!-- ie10-viewport-bug-workaround.js -->
+<script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script><!-- holder.js -->
+    <!-- 로그인부분 끝 -->
+    <!-- 조인부분 시작 -->
+ <div class="container">    
+    <form enctype="multipart/form-data">
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel">Join</h4>
+	      </div>
+	      <div class="modal-body">
+				<div class="form-group">
+			        <input type="text" class="form-control input-lg" placeholder="ID" name="user_id">
+			    </div>
+			    <div class="form-group">
+			        <input type="password" class="form-control input-lg" placeholder="Password" name="user_password">
+			    </div>
+			    <div class="form-group">
+			        <input type="text" class="form-control input-lg" placeholder="Name" name="user_name">
+			    </div>
+			    <div class="form-group">
+			        <input type="text" class="form-control input-lg" placeholder="Email" name="user_email">
+			    </div>
+			    <div class="form-group">
+			    	<input type="file" class="form-control input-lg" placeholder="Image" name="user_image">
+			    </div>
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="usersregister(this.form)">회원가입</button>
+		<button type="button" class="btn btn-default" onclick="self.close()">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	</form>
+</div>
+<!-- 조인부분 끝 -->
+    
+    
+    
+    
+     <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">
             <div class="container">
                 <div class="row">
                     <div class="footer-col col-md-4">
+                        <h3>Location</h3>
+                        <p>Samsung SDS Multicampus<br>GangNam in Seoul</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
                         <ul class="list-inline">
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
@@ -138,7 +237,17 @@
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
                             </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
                         </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Contact</h3>
+                        <p>http://www.multicampus.co.kr/<br>02-3429-5114</p>
                     </div>
                 </div>
             </div>
