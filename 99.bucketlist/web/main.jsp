@@ -120,6 +120,9 @@ function usersregister(f) {
                     <li class="page-scroll">
                         <a href="commentslist.bk">comments list</a>
                     </li>
+                     <li class="page-scroll">
+                        <a href="commentslist.bk">comments list2</a>
+                    </li>
                     
                 </ul>
             </div>

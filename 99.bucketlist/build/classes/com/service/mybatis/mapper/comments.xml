@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.service.mybatis.mapper.CommentsMapper">
+	
+	<select id="searchComments" parameterType="comments" resultType="comments">
+		SELECT * FROM COMMENTS WHERE NAME LIKE '%'||#{name}||'%'
+	</select>
+	
+	<select id="selectAllComments" resultType="comments">
+		SELECT * FROM COMMENTS
+	</select>
+	
+	<select id="selectComments"
+	parameterType="comments"
+	resultType="comments">
+	    SELECT * FROM COMMENTS WHERE ID = #{id}
+	</select>
+	
+	<insert id="insertComments"
+	parameterType="comments"
+	>
+	    INSERT INTO COMMENTS VALUES(COMMENTS_ID.NEXTVAL,#{contents_id},#{user_id},#{comments_content},sysdate,#{comments_image})
+	</insert>
+	<delete id="deleteComments"
+	parameterType="comments"
+	>
+	   DELETE FROM COMMENTS WHERE user_id = #{user_id} 
+	</delete>
+	<update id="updatecomments"
+	parameterType="comments">
+	   UPDATE COMMENTS SET PWD=#{pwd},NAME=#{name} WHERE ID=#{id}
+	</update>
+</mapper>

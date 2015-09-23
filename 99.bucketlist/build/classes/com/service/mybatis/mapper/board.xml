@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.service.mybatis.mapper.CustMapper">
+	
+	<select id="searchCust" parameterType="cust" resultType="cust">
+		SELECT * FROM CUST WHERE NAME LIKE '%'||#{name}||'%'
+	</select>
+	
+	<select id="selectAllCust" resultType="cust">
+		SELECT * FROM CUST
+	</select>
+	
+	<select id="selectCust"
+	parameterType="cust"
+	resultType="cust">
+	    SELECT * FROM CUST WHERE ID = #{id}
+	</select>
+	
+	<insert id="insertCust"
+	parameterType="cust"
+	>
+	    INSERT INTO CUST VALUES(#{id},#{pwd},#{name})
+	</insert>
+	<delete id="deleteCust"
+	parameterType="cust"
+	>
+	   DELETE FROM CUST WHERE ID = #{id}
+	</delete>
+	<update id="updateCust"
+	parameterType="cust">
+	   UPDATE CUST SET PWD=#{pwd},NAME=#{name} WHERE ID=#{id}
+	</update>
+</mapper>
+
+
+
+
+
+

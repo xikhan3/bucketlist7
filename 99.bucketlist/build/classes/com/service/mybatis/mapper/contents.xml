@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.service.mybatis.mapper.ContentsMapper">
+
+	<select id="searchContents" parameterType="contents" resultType="contents">
+		SELECT * FROM CONTENTS WHERE USER_ID LIKE '%'||#{user_id}||'%'
+	</select>
+
+	<select id="selectAllContents" resultType="contents">
+		SELECT * FROM CONTENTS
+	</select>
+
+	<select id="selectContents" parameterType="contents" resultType="contents">
+		SELECT * FROM CONTENTS WHERE CONTENTS_ID = #{contents_id}
+	</select>
+	
+	<select id="selectCategoryContents" parameterType="contents" resultType="contents">
+		SELECT * FROM CONTENTS WHERE CATEGORY_ID = #{category_id}
+	</select>
+
+	<insert id="insertContents" parameterType="contents">
+		INSERT INTO CONTENTS VALUES(CONTENTS_ID.NEXTVAL,#{user_id},
+		#{category_id},#{contents_title},#{contents_image1},
+		#{contents_image2},#{contents_image3},
+		#{contents_content},sysdate,
+		null,null,null,sysdate,'1','1')
+	</insert>
+
+	<delete id="deleteContents" parameterType="contents">
+		DELETE FROM CONTENTS WHERE USER_ID = #{user_id} AND CONTENTS_ID = #{contents_id}
+	</delete>
+
+	<update id="updateContents" parameterType="contents">
+		UPDATE CONTENTS SET
+		CONTENTS_ID = #{contents_id},
+		CATEGORY_ID = #{category_id},
+		CONTENTS_TITLE = #{contents_title},
+		CONTENTS_IMAGE1 = #{contents_image1}, 
+		CONTENTS_IMAGE2 = #{contents_image2}, 
+		CONTENTS_IMAGE3 = #{contents_image3},
+		CONTENTS_CONTENT = #{contents_content},
+		CONTENTS_GOALDATE = sysdate,
+		CONTENTS_LOC = null,
+		LAT = null,  
+		LON = null,
+		CONTENTS_REGDATE = sysdate,
+		CONTENTS_PRIVATE = '1',
+		CONTENTS_COM = '1'
+		WHERE USER_ID = #{user_id} AND CONTENTS_ID = #{contents_id}
+	</update>
+</mapper>
+
+
+
+
+
+
