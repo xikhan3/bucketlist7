@@ -70,40 +70,22 @@ function usersregister(f) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="main.bk">Bucket List</a>
+            <a class="navbar-brand" href="main.bk">BUCKET LIST</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-right navbar-nav">
                <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li class="page-scroll">
-                    	<c:choose>
-                    		<c:when test="${loginuser == null }">
-                    			<a data-toggle="modal" data-target="#myModal" href="#myModal">LOGIN</a> 
-                    		</c:when>
-                    		<c:otherwise>
-                    			<a href="logout.bk">logout</a>
-                    		</c:otherwise>
-                    	</c:choose>
-                    </li>
-                    <li class="page-scroll">
-                    	<c:choose>
-                    		<c:when test="${loginuser == null }">
-                    			<a data-toggle="modal" data-target="#myModal2" href="#myModal2">JOIN</a>
-                    		</c:when>
-                    		<c:otherwise>
-                    			<a href="mypage.bk">mypage</a>
-                    		</c:otherwise>
-                    	</c:choose>
-                    </li>
+              
+                 
                     <li class="page-scroll">
                  	   <c:choose>
                     		<c:when test="${loginuser == null }">
                     			<a data-toggle="modal" data-target="#myModal" href="#myModal">CONTENTS</a>
                     		</c:when>
                     		<c:otherwise>
-                    			<a href="go.bk?next=contents">contents</a>
+                    			<a href="go.bk?next=contents">CONTENTS</a>
                     		</c:otherwise>
                     	</c:choose>
                     </li>
@@ -111,14 +93,57 @@ function usersregister(f) {
                         <a href="contentslist.bk">CONTENTS LIST</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="go.bk?next=comments">comments</a>
+                        <a href="go.bk?next=comments">COMMENTS</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="commentslist.bk">comments list</a>
+                        <a href="commentslist.bk">COMMENTS LIST</a>
                     </li>
                     
-                </ul>
-        </div>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
+						<ul class="dropdown-menu" style="padding: 12px;">
+							<form class="form-inline">
+								<button type="submit" class="btn btn-default pull-right">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+								<input type="text" class="form-control pull-left"
+									placeholder="Search">
+							</form>
+						</ul></li>
+						
+						
+						
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>
+							<i class="glyphicon glyphicon-chevron-down"></i></a>
+						<ul class="dropdown-menu">
+							<li>
+								<c:choose>
+			                    		<c:when test="${loginuser == null }">
+			                    			<a data-toggle="modal" data-target="#myModal" href="#myModal">LOGIN</a> 
+			                    		</c:when>
+			                    		<c:otherwise>
+			                    			<a href="logout.bk">LOGOUT</a>
+			                    		</c:otherwise>
+		                    	</c:choose>
+							</li>
+							<li>
+								<c:choose>
+									<c:when test="${loginuser == null }">
+										<a data-toggle="modal" data-target="#myModal2"
+											href="#myModal2">JOIN</a>
+									</c:when>
+									<c:otherwise>
+										<a href="mypage.bk">MY PAGE</a>
+									</c:otherwise>
+								</c:choose>
+							</li>
+							<li class="divider"></li>
+							<li><a href="#">About</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
        
     </div>
 </div>
